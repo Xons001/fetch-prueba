@@ -1,21 +1,28 @@
 import React, {Component} from 'react';
 
+var url = 'https://pokeapi.co/api/v2/pokemon/ditto';
+
 class App extends Component {
   constructor() {
     super();
+    this.state = {
+      pokemon: {}
+    }
   }
 
   componentDidMount() {
-    fetch('https://pokeapi.co/api/v2/pokemon/ditto')
-    .then(response => {
+    window.fetch(url)
+    .then(response =>  {
       return response.json();
     })
     .then(response => {
-      console.log(response);
+      this.setState({ pokemon : response})
+      
     })
   }
 
   render() {
+    console.log(this.state.pokemon);
     return (
       <div>
         Fetch
